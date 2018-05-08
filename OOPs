@@ -1,0 +1,69 @@
+using System;
+
+namespace ConsoleApp1
+{
+    #region FUNCTION OVERRIDING - dynamix polymorphism
+    // same signature, in different class in same hierarchy using base class reference.
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            //Nullable type
+            Nullable<int> i = null;
+            Program abc = new Program();
+            string test = "test";
+            Console.WriteLine(abc.change(test));
+            Console.WriteLine((test));
+
+            // calling the overriden method
+            DClass objDc = new DClass();
+            objDc.Sample1();
+
+            // calling the base class method
+            Bclass objBc = new DClass();
+            objBc.Sample1();
+           
+            Console.ReadLine();
+
+        }
+         string change(string i)
+        {
+          return "notest";
+        }
+        public class Bclass
+        {
+            //VIRTUAL- allow method to be modified in derived ckass
+            protected string abc;
+            public virtual void Sample1()
+            {
+                Console.WriteLine("Base Class");
+            }
+           
+        }
+        // Derived Class
+        public class DClass : Bclass
+        {
+            
+            
+            //OVERRIDE- modify the virtual method
+            override public void Sample1()
+            {
+                DClass testt = new DClass();
+                testt.abc="Protected member can only be accessed by derived classes. It cannot be accessed from derived class by created object of base class";
+
+                Console.WriteLine("Derived Class");
+            }
+        }
+        public class EClass:DClass
+        {
+            
+        }
+      
+     
+
+    }
+    #endregion
+    // FUNTION OVERLOADING- STATIC POLY 
+    // different signature, same method name, same hierarchy
+}
